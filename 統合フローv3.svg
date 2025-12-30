@@ -1,0 +1,827 @@
+<svg viewBox="0 0 3000 4500" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto;">
+  <!-- スタイル定義 -->
+  <defs>
+    <style>
+      .box { fill: #e3f2fd; stroke: #1976d2; stroke-width: 2; }
+      .decision { fill: #fff3e0; stroke: #ff9800; stroke-width: 2; }
+      .process { fill: #f3e5f5; stroke: #9c27b0; stroke-width: 2; }
+      .data { fill: #e0f2f1; stroke: #009688; stroke-width: 2; }
+      .error { fill: #ffcdd2; stroke: #d32f2f; stroke-width: 2; }
+      .email { fill: #e1f5fe; stroke: #03a9f4; stroke-width: 2; }
+      .report { fill: #e8f5e9; stroke: #4caf50; stroke-width: 2; }
+      .plan { fill: #fce4ec; stroke: #e91e63; stroke-width: 2; }
+      .webhook { fill: #fff8e1; stroke: #ffc107; stroke-width: 2; }
+      .api { fill: #e0f2f1; stroke: #009688; stroke-width: 2; }
+      .external { fill: #f5f5f5; stroke: #616161; stroke-width: 3; stroke-dasharray: 5,5; }
+      .stripe { fill: #f0f0ff; stroke: #635bff; stroke-width: 3; stroke-dasharray: 5,5; }
+      .firebase { fill: #fff5e6; stroke: #ff6f00; stroke-width: 3; stroke-dasharray: 5,5; }
+      .frontend { fill: #e3f2fd; stroke: #1976d2; stroke-width: 2; }
+      .backend { fill: #e8f5e9; stroke: #4caf50; stroke-width: 2; }
+      .password-reset { fill: #fff8e1; stroke: #f9a825; stroke-width: 2; }
+      .text { font-family: Arial, sans-serif; font-size: 12px; text-anchor: middle; }
+      .small-text { font-family: Arial, sans-serif; font-size: 10px; text-anchor: middle; }
+      .tiny-text { font-family: Arial, sans-serif; font-size: 8px; text-anchor: middle; }
+      .title { font-size: 24px; font-weight: bold; }
+      .section-title { font-size: 16px; font-weight: bold; }
+      .arrow { fill: none; stroke: #333; stroke-width: 2; marker-end: url(#arrowhead); }
+      .dashed-arrow { fill: none; stroke: #666; stroke-width: 2; stroke-dasharray: 5,5; marker-end: url(#arrowhead-gray); }
+      .email-arrow { fill: none; stroke: #0277bd; stroke-width: 3; stroke-dasharray: 8,4; marker-end: url(#arrowhead-blue); }
+      .flow-connector { fill: none; stroke: #FF6B6B; stroke-width: 3; stroke-dasharray: 10,5; marker-end: url(#arrowhead-red); }
+      .inner-box { fill: #fff; stroke-width: 1; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#333"></polygon>
+    </marker>
+    <marker id="arrowhead-gray" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#666"></polygon>
+    </marker>
+    <marker id="arrowhead-blue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#0277bd"></polygon>
+    </marker>
+    <marker id="arrowhead-red" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#FF6B6B"></polygon>
+    </marker>
+  </defs>
+
+  <!-- メインタイトル -->
+  <text x="1500" y="40" class="title" text-anchor="middle">COSIMO AI 完全版統合認証フロー - 外部メール認証を含む完全体</text>
+
+  <!-- Phase 2-3: 認証システム（詳細版） -->
+  <g id="auth-flow-detailed">
+    <rect x="50" y="80" width="900" height="1700" rx="10" fill="#f5f5f5" stroke="#333" stroke-width="2"></rect>
+    <text x="500" y="110" class="section-title">Phase 2-3: 認証システム</text>
+    
+    <!-- 開始 -->
+    <ellipse cx="500" cy="160" rx="60" ry="30" class="box"></ellipse>
+    <text x="500" y="165" class="text">開始</text>
+
+    <!-- ログイン画面表示 -->
+    <rect x="400" y="210" width="200" height="50" rx="10" class="box"></rect>
+    <text x="500" y="235" class="text">ログイン画面表示</text>
+
+    <!-- アクション選択 -->
+    <polygon points="500,300 600,350 500,400 400,350" class="decision"></polygon>
+    <text x="500" y="345" class="text">アクション</text>
+    <text x="500" y="360" class="text">選択？</text>
+    <text x="350" y="350" class="small-text">新規登録</text>
+    <text x="650" y="350" class="small-text">ログイン</text>
+    <text x="500" y="420" class="small-text">PW忘れ</text>
+
+    <!-- 新規登録フロー -->
+    <text x="200" y="450" class="section-title">新規登録フロー</text>
+    <rect x="100" y="470" width="180" height="50" rx="10" class="process"></rect>
+    <text x="190" y="495" class="text">新規登録フォーム</text>
+
+    <rect x="100" y="540" width="180" height="60" rx="10" class="process"></rect>
+    <text x="190" y="560" class="text">メールアドレス</text>
+    <text x="190" y="580" class="text">パスワード入力</text>
+
+    <!-- 入力検証 -->
+    <polygon points="190,640 250,680 190,720 130,680" class="decision"></polygon>
+    <text x="190" y="680" class="text">入力検証OK？</text>
+
+    <rect x="50" y="760" width="120" height="40" rx="10" class="error"></rect>
+    <text x="110" y="785" class="small-text">エラー表示</text>
+
+    <!-- Firebase Auth createUser -->
+    <rect x="100" y="760" width="180" height="60" rx="10" class="data"></rect>
+    <text x="190" y="780" class="small-text">Firebase Auth</text>
+    <text x="190" y="800" class="small-text">createUser</text>
+
+    <!-- 登録成功判定 -->
+    <polygon points="190,860 250,900 190,940 130,900" class="decision"></polygon>
+    <text x="190" y="900" class="text">登録成功？</text>
+
+    <!-- 既存メールエラー -->
+    <rect x="50" y="980" width="120" height="60" rx="10" class="error"></rect>
+    <text x="110" y="1005" class="small-text">エラー：</text>
+    <text x="110" y="1025" class="small-text">既存メール</text>
+
+    <!-- メール送信 -->
+    <rect x="100" y="980" width="180" height="60" rx="10" class="email"></rect>
+    <text x="190" y="1000" class="small-text">sendEmail</text>
+    <text x="190" y="1020" class="small-text">Verification()</text>
+
+    <rect x="100" y="1080" width="180" height="50" rx="10" class="box"></rect>
+    <text x="190" y="1105" class="text">確認メール送信画面</text>
+
+    <!-- 外部メールシステム -->
+    <rect x="320" y="950" width="150" height="200" rx="15" class="external"></rect>
+    <text x="395" y="970" class="small-text">外部システム</text>
+    <text x="395" y="990" class="small-text">ユーザーの</text>
+    <text x="395" y="1010" class="small-text">メールボックス</text>
+    <line x1="330" y1="1030" x2="460" y2="1030" stroke="#616161" stroke-width="1"></line>
+    <text x="395" y="1050" class="tiny-text">認証メール受信</text>
+    <rect x="340" y="1070" width="110" height="35" rx="5" class="process"></rect>
+    <text x="395" y="1090" class="small-text">リンククリック</text>
+    <text x="395" y="1130" class="tiny-text">ブラウザ起動</text>
+
+    <!-- Firebase Auth メール認証完了 -->
+    <rect x="100" y="1200" width="180" height="60" rx="10" class="data"></rect>
+    <text x="190" y="1220" class="small-text">Firebase Auth</text>
+    <text x="190" y="1240" class="small-text">メール認証完了</text>
+
+    <rect x="100" y="1300" width="180" height="50" rx="10" class="box"></rect>
+    <text x="190" y="1325" class="text">認証完了画面</text>
+
+    <!-- ログインフロー -->
+    <text x="600" y="450" class="section-title">ログインフロー</text>
+    <rect x="520" y="470" width="180" height="50" rx="10" class="process"></rect>
+    <text x="610" y="495" class="text">ログインフォーム</text>
+
+    <rect x="520" y="540" width="180" height="60" rx="10" class="process"></rect>
+    <text x="610" y="560" class="text">メールアドレス</text>
+    <text x="610" y="580" class="text">パスワード入力</text>
+
+    <!-- ログイン入力検証 -->
+    <polygon points="610,640 670,680 610,720 550,680" class="decision"></polygon>
+    <text x="610" y="680" class="text">入力検証OK？</text>
+
+    <rect x="730" y="660" width="120" height="40" rx="10" class="error"></rect>
+    <text x="790" y="685" class="small-text">エラー表示</text>
+
+    <!-- Firebase Auth signIn -->
+    <rect x="520" y="760" width="180" height="60" rx="10" class="data"></rect>
+    <text x="610" y="780" class="small-text">Firebase Auth</text>
+    <text x="610" y="800" class="small-text">signIn</text>
+
+    <!-- 認証成功判定 -->
+    <polygon points="610,860 670,900 610,940 550,900" class="decision"></polygon>
+    <text x="610" y="900" class="text">認証成功？</text>
+
+    <!-- 認証失敗処理 -->
+    <rect x="730" y="850" width="150" height="150" rx="10" class="error"></rect>
+    <text x="805" y="870" class="text">認証失敗処理</text>
+    <text x="805" y="895" class="small-text">エラー種別</text>
+    <text x="805" y="920" class="tiny-text">ユーザー未登録：</text>
+    <text x="805" y="935" class="tiny-text">新規登録へ誘導</text>
+    <text x="805" y="960" class="tiny-text">パスワード間違い：</text>
+    <text x="805" y="975" class="tiny-text">PW再設定へ</text>
+
+    <!-- メール認証チェック -->
+    <polygon points="610,1000 670,1040 610,1080 550,1040" class="decision"></polygon>
+    <text x="610" y="1035" class="text">メール</text>
+    <text x="610" y="1050" class="text">確認済み？</text>
+
+    <!-- メール未確認処理 -->
+    <rect x="400" y="1120" width="160" height="60" rx="10" class="error"></rect>
+    <text x="480" y="1145" class="small-text">メール未確認</text>
+    <text x="480" y="1165" class="small-text">警告表示</text>
+
+    <rect x="400" y="1200" width="160" height="60" rx="10" class="email"></rect>
+    <text x="480" y="1225" class="small-text">再送信オプション</text>
+    <text x="480" y="1245" class="small-text">sendEmailVerification()</text>
+
+    <!-- パスワード再設定フロー -->
+    <text x="800" y="450" class="section-title">PW再設定フロー</text>
+    <rect x="720" y="470" width="180" height="50" rx="10" class="password-reset"></rect>
+    <text x="810" y="495" class="text">PW再設定画面</text>
+
+    <rect x="720" y="540" width="180" height="50" rx="10" class="password-reset"></rect>
+    <text x="810" y="565" class="text">メール入力</text>
+
+    <!-- Firebase Auth sendPasswordReset -->
+    <rect x="720" y="620" width="180" height="60" rx="10" class="data"></rect>
+    <text x="810" y="640" class="small-text">Firebase Auth</text>
+    <text x="810" y="660" class="small-text">sendPasswordReset</text>
+
+    <rect x="720" y="720" width="180" height="50" rx="10" class="email"></rect>
+    <text x="810" y="745" class="text">送信完了画面</text>
+
+    <!-- 外部メールシステム（PW再設定） -->
+    <rect x="720" y="800" width="150" height="200" rx="15" class="external"></rect>
+    <text x="795" y="820" class="small-text">外部システム</text>
+    <text x="795" y="840" class="small-text">ユーザーの</text>
+    <text x="795" y="860" class="small-text">メールボックス</text>
+    <line x1="730" y1="880" x2="860" y2="880" stroke="#616161" stroke-width="1"></line>
+    <text x="795" y="900" class="tiny-text">PWリセットメール</text>
+    <rect x="740" y="920" width="110" height="35" rx="5" class="process"></rect>
+    <text x="795" y="940" class="small-text">リンククリック</text>
+    <text x="795" y="980" class="tiny-text">ブラウザ起動</text>
+
+    <!-- 新PW設定画面 -->
+    <rect x="720" y="1040" width="180" height="50" rx="10" class="password-reset"></rect>
+    <text x="810" y="1065" class="text">新PW設定画面</text>
+
+    <!-- PW一致確認 -->
+    <polygon points="810,1130 870,1170 810,1210 750,1170" class="decision"></polygon>
+    <text x="810" y="1165" class="text">PW一致</text>
+    <text x="810" y="1180" class="text">確認OK？</text>
+
+    <!-- PW更新完了 -->
+    <rect x="720" y="1250" width="180" height="50" rx="10" class="data"></rect>
+    <text x="810" y="1275" class="text">PW更新完了</text>
+
+    <!-- セッション保存 -->
+    <rect x="350" y="1500" width="300" height="50" rx="10" class="data"></rect>
+    <text x="500" y="1525" class="text">セッション保存</text>
+
+    <!-- ダッシュボード -->
+    <rect x="350" y="1600" width="300" height="50" rx="10" class="box"></rect>
+    <text x="500" y="1625" class="text">ダッシュボード</text>
+
+    <!-- 完了 -->
+    <ellipse cx="500" cy="1720" rx="60" ry="30" class="box"></ellipse>
+    <text x="500" y="1725" class="text">完了</text>
+
+    <!-- 矢印（詳細） -->
+    <line x1="500" y1="190" x2="500" y2="210" class="arrow"></line>
+    <line x1="500" y1="260" x2="500" y2="300" class="arrow"></line>
+    <line x1="450" y1="370" x2="190" y2="470" class="arrow"></line>
+    <line x1="550" y1="370" x2="610" y2="470" class="arrow"></line>
+    <line x1="500" y1="400" x2="810" y2="470" class="arrow"></line>
+    <line x1="190" y1="520" x2="190" y2="540" class="arrow"></line>
+    <line x1="190" y1="600" x2="190" y2="640" class="arrow"></line>
+    <line x1="160" y1="700" x2="110" y2="760" class="arrow"></line>
+    <line x1="190" y1="720" x2="190" y2="760" class="arrow"></line>
+    <line x1="190" y1="820" x2="190" y2="860" class="arrow"></line>
+    <line x1="160" y1="920" x2="110" y2="980" class="arrow"></line>
+    <line x1="190" y1="940" x2="190" y2="980" class="arrow"></line>
+    <line x1="190" y1="1040" x2="190" y2="1080" class="arrow"></line>
+    <line x1="280" y1="1000" x2="320" y2="1000" class="email-arrow"></line>
+    <line x1="395" y1="1105" x2="395" y2="1150" class="arrow"></line>
+    <line x1="340" y1="1100" x2="280" y2="1200" class="arrow"></line>
+    <line x1="190" y1="1260" x2="190" y2="1300" class="arrow"></line>
+    <line x1="190" y1="1350" x2="190" y2="1500" class="arrow"></line>
+    <line x1="610" y1="520" x2="610" y2="540" class="arrow"></line>
+    <line x1="610" y1="600" x2="610" y2="640" class="arrow"></line>
+    <line x1="640" y1="680" x2="730" y2="680" class="arrow"></line>
+    <line x1="610" y1="720" x2="610" y2="760" class="arrow"></line>
+    <line x1="610" y1="820" x2="610" y2="860" class="arrow"></line>
+    <line x1="640" y1="900" x2="730" y2="900" class="arrow"></line>
+    <line x1="610" y1="940" x2="610" y2="1000" class="arrow"></line>
+    <line x1="570" y1="1060" x2="480" y2="1120" class="arrow"></line>
+    <line x1="610" y1="1080" x2="610" y2="1500" class="arrow"></line>
+    <line x1="480" y1="1260" x2="480" y2="1500" class="arrow"></line>
+    <line x1="500" y1="1550" x2="500" y2="1600" class="arrow"></line>
+    <line x1="500" y1="1650" x2="500" y2="1690" class="arrow"></line>
+    
+    <!-- PW再設定フローの矢印 -->
+    <line x1="810" y1="520" x2="810" y2="540" class="arrow"></line>
+    <line x1="810" y1="590" x2="810" y2="620" class="arrow"></line>
+    <line x1="810" y1="680" x2="810" y2="720" class="arrow"></line>
+    <line x1="810" y1="770" x2="810" y2="800" class="email-arrow"></line>
+    <text x="815" y="790" class="tiny-text">メール送信</text>
+    <line x1="795" y1="955" x2="795" y2="1000" class="arrow"></line>
+    <line x1="795" y1="1000" x2="810" y2="1040" class="arrow"></line>
+    <line x1="810" y1="1090" x2="810" y2="1130" class="arrow"></line>
+    <line x1="810" y1="1210" x2="810" y2="1250" class="arrow"></line>
+    <line x1="810" y1="1300" x2="810" y2="1500" class="arrow"></line>
+  </g>
+
+  <!-- Phase 3&5: 利用制限管理フロー（詳細版） -->
+  <g id="usage-limit-flow-detailed">
+    <rect x="1050" y="80" width="900" height="2200" rx="10" fill="#f5f5f5" stroke="#333" stroke-width="2"></rect>
+    <text x="1500" y="110" class="section-title">Phase 3&amp;5: 利用制限・レポート生成・決済</text>
+
+    <!-- ダッシュボード表示（詳細） -->
+    <rect x="1150" y="160" width="700" height="180" rx="10" class="process"></rect>
+    <text x="1500" y="190" class="text" font-weight="bold">ダッシュボード表示</text>
+    <text x="1500" y="215" class="small-text">利用可能回数: UsageCounter(表示)</text>
+    <text x="1500" y="235" class="small-text">最終リセット: {date}</text>
+    <text x="1500" y="255" class="small-text">次回リセット日: {nextResetDate}</text>
+    <text x="1500" y="275" class="tiny-text" fill="#1976d2">[コンサルティングのお問い合わせボタン]</text>
+    <rect x="1200" y="290" width="180" height="30" rx="5" fill="#2196F3"></rect>
+    <text x="1290" y="310" class="small-text" fill="white">プランをアップグレード</text>
+    <rect x="1420" y="290" width="180" height="30" rx="5" fill="#4CAF50"></rect>
+    <text x="1510" y="310" class="small-text" fill="white">コンサルティング</text>
+
+    <!-- ノーマルプランダッシュボード -->
+    <rect x="1150" y="360" width="280" height="90" rx="10" class="process"></rect>
+    <text x="1290" y="380" class="small-text" font-weight="bold">ノーマルプランダッシュボード</text>
+    <text x="1290" y="400" class="tiny-text">利用可能回数: 15回/月</text>
+    <text x="1290" y="415" class="tiny-text">今月の利用: {count}回</text>
+    <text x="1290" y="430" class="tiny-text" fill="#1976d2">[コンサルティング]ボタン</text>
+    <text x="1290" y="445" class="tiny-text">クリックでモーダル表示</text>
+
+    <!-- レポート生成ボタンクリック -->
+    <rect x="1250" y="480" width="500" height="60" rx="10" class="report"></rect>
+    <text x="1500" y="510" class="text" font-weight="bold">レポート生成ボタンクリック</text>
+    <text x="1500" y="530" class="small-text">利用回数チェック開始</text>
+
+    <!-- Firestoreから利用状況取得 -->
+    <rect x="1250" y="570" width="500" height="80" rx="10" class="data"></rect>
+    <text x="1500" y="600" class="text" font-weight="bold">Firestoreから</text>
+    <text x="1500" y="620" class="small-text">ユーザー情報取得</text>
+    <text x="1500" y="635" class="tiny-text">plan, lifetimeUsageCount,</text>
+    <text x="1500" y="650" class="tiny-text">monthlyUsageCount, lastResetDate</text>
+
+    <!-- ユーザーのプランは？ -->
+    <polygon points="1500,700 1600,750 1500,800 1400,750" class="decision"></polygon>
+    <text x="1500" y="745" class="text" font-weight="bold">ユーザーの</text>
+    <text x="1500" y="760" class="text" font-weight="bold">プランは？</text>
+    <text x="1350" y="755" class="small-text">free</text>
+    <text x="1650" y="755" class="small-text">normal</text>
+
+    <!-- 無料プラン処理 -->
+    <rect x="1150" y="850" width="250" height="80" rx="10" class="plan"></rect>
+    <text x="1275" y="875" class="text" font-weight="bold">無料トライアル</text>
+    <text x="1275" y="895" class="small-text">月間3回まで（累計）</text>
+    <text x="1275" y="915" class="tiny-text">lifetimeUsageCount確認</text>
+    <text x="1275" y="925" class="tiny-text">リセットなし</text>
+
+    <!-- ノーマルプラン処理 -->
+    <rect x="1600" y="850" width="250" height="80" rx="10" class="plan"></rect>
+    <text x="1725" y="875" class="text" font-weight="bold">ノーマルプラン</text>
+    <text x="1725" y="895" class="small-text">¥11,000/月（税込）</text>
+    <text x="1725" y="915" class="tiny-text">月間15回まで</text>
+    <text x="1725" y="925" class="tiny-text">monthlyUsageCount確認</text>
+
+    <!-- 決済完了時の処理 -->
+    <rect x="1650" y="950" width="180" height="80" rx="10" class="webhook"></rect>
+    <text x="1740" y="975" class="small-text" font-weight="bold">決済完了時の処理</text>
+    <text x="1740" y="995" class="tiny-text">checkout.session.completed</text>
+    <text x="1740" y="1010" class="tiny-text">monthlyUsageCount = 0</text>
+    <text x="1740" y="1025" class="tiny-text">monthlyLimit = 15</text>
+
+    <!-- 月別リセット処理 -->
+    <rect x="1650" y="1050" width="180" height="60" rx="10" class="email"></rect>
+    <text x="1740" y="1075" class="small-text" font-weight="bold">Stripe Webhook受信</text>
+    <text x="1740" y="1095" class="tiny-text">invoice.payment_succeeded</text>
+    <text x="1740" y="1105" class="tiny-text">毎月1日（次の満額決済）</text>
+
+    <!-- lastResetDateチェック -->
+    <rect x="1400" y="980" width="180" height="60" rx="10" class="data"></rect>
+    <text x="1490" y="1005" class="small-text" font-weight="bold">lastResetDateチェック</text>
+    <text x="1490" y="1025" class="tiny-text">月がまたいでいる場合リセット</text>
+
+    <!-- 累計利用回数チェック（無料） -->
+    <polygon points="1275,1080 1325,1120 1275,1160 1225,1120" class="decision"></polygon>
+    <text x="1275" y="1115" class="small-text" font-weight="bold">累計利用回数</text>
+    <text x="1275" y="1130" class="small-text" font-weight="bold">&lt; 3回？</text>
+
+    <!-- 月間利用回数チェック（有料） -->
+    <polygon points="1725,1080 1775,1120 1725,1160 1675,1120" class="decision"></polygon>
+    <text x="1725" y="1115" class="small-text" font-weight="bold">月間利用回数</text>
+    <text x="1725" y="1130" class="small-text" font-weight="bold">&lt; 15回？</text>
+
+    <!-- 生成可能（無料） -->
+    <rect x="1100" y="1200" width="150" height="60" rx="10" class="email"></rect>
+    <text x="1175" y="1225" class="text" font-weight="bold">生成可能</text>
+    <text x="1175" y="1245" class="small-text">残り: {3 - count}回</text>
+    <text x="1175" y="1255" class="tiny-text">満回まで減る</text>
+
+    <!-- 生成不可（無料） -->
+    <rect x="1300" y="1200" width="200" height="100" rx="10" class="error"></rect>
+    <text x="1400" y="1225" class="text" font-weight="bold">生成不可</text>
+    <text x="1400" y="1245" class="small-text">無料回数を使い切りました</text>
+    <text x="1400" y="1265" class="small-text">アップグレードが必要</text>
+    <text x="1400" y="1285" class="tiny-text" fill="#1976d2">ノーマルプランに申し込む</text>
+
+    <!-- 生成可能（ノーマル） -->
+    <rect x="1550" y="1200" width="150" height="60" rx="10" class="email"></rect>
+    <text x="1625" y="1225" class="text" font-weight="bold">生成可能</text>
+    <text x="1625" y="1245" class="small-text">残り: {15 - count}回</text>
+    <text x="1625" y="1255" class="tiny-text">満回まで減る</text>
+
+    <!-- 月間上限到達 -->
+    <rect x="1750" y="1200" width="180" height="100" rx="10" class="error"></rect>
+    <text x="1840" y="1225" class="text" font-weight="bold">月間上限到達</text>
+    <text x="1840" y="1245" class="small-text">今月は利用可能回数に達しました</text>
+    <text x="1840" y="1265" class="small-text">翌月まで待機 または</text>
+    <text x="1840" y="1285" class="tiny-text" fill="#1976d2">コンサルティングのお問い合わせ</text>
+
+    <!-- コンサルティングのお問い合わせ -->
+    <rect x="1300" y="1350" width="300" height="140" rx="10" class="process"></rect>
+    <text x="1450" y="1375" class="small-text" font-weight="bold">コンサルティングのお問い合わせ</text>
+    <text x="1450" y="1395" class="tiny-text">お名前 *</text>
+    <text x="1450" y="1410" class="tiny-text">会社名 * (自動入力: Cosimo+19)</text>
+    <text x="1450" y="1425" class="tiny-text">部署名</text>
+    <text x="1450" y="1440" class="tiny-text">メールアドレス *</text>
+    <text x="1450" y="1455" class="tiny-text">ご相談内容 *</text>
+    <text x="1450" y="1470" class="tiny-text">・事業承継の為のAIナレッジマネジメントシステムにご興味がある方</text>
+    <text x="1450" y="1485" class="tiny-text">・さらなるレポート利用をご希望の方</text>
+
+    <!-- 利用可能？ -->
+    <polygon points="1500,1520 1550,1560 1500,1600 1450,1560" class="decision"></polygon>
+    <text x="1500" y="1555" class="text" font-weight="bold">利用</text>
+    <text x="1500" y="1570" class="text" font-weight="bold">可能？</text>
+
+    <!-- 利用制限エラー画面 -->
+    <rect x="1600" y="1520" width="240" height="80" rx="10" class="error"></rect>
+    <text x="1720" y="1545" class="text" font-weight="bold">利用制限エラー画面</text>
+    <text x="1720" y="1565" class="small-text">利用制限に達しました</text>
+    <text x="1720" y="1585" class="tiny-text">アップグレード または</text>
+    <text x="1720" y="1595" class="tiny-text">コンサルティングのお問い合わせ</text>
+
+    <!-- AI APIの呼び出し -->
+    <rect x="1350" y="1650" width="300" height="60" rx="10" class="api"></rect>
+    <text x="1500" y="1675" class="text" font-weight="bold">AI APIの呼び出し</text>
+    <text x="1500" y="1695" class="small-text">レポート生成実行</text>
+    <text x="1500" y="1705" class="tiny-text">（OpenAI API / Claude API）</text>
+
+    <!-- 利用回数更新 -->
+    <rect x="1350" y="1740" width="300" height="60" rx="10" class="data"></rect>
+    <text x="1500" y="1765" class="text" font-weight="bold">利用回数更新</text>
+    <text x="1500" y="1785" class="small-text">free: lifetimeUsageCount++</text>
+    <text x="1500" y="1795" class="small-text">normal: monthlyUsageCount++</text>
+
+    <!-- レポート表示 -->
+    <ellipse cx="1500" cy="1850" rx="80" ry="30" class="box"></ellipse>
+    <text x="1500" y="1855" class="text">レポート表示</text>
+    <text x="1500" y="1870" class="small-text">残り使用回数も表示</text>
+
+    <!-- コンサルティングモーダル -->
+    <rect x="1200" y="1920" width="280" height="140" rx="10" class="process"></rect>
+    <text x="1340" y="1945" class="small-text" font-weight="bold">コンサルティングモーダル</text>
+    <text x="1340" y="1965" class="tiny-text">ご相談内容をお選びください：</text>
+    <text x="1340" y="1985" class="tiny-text" fill="#1976d2">□ より多くのレポート利用をご希望の場合</text>
+    <text x="1340" y="2005" class="tiny-text" fill="#1976d2">□ 事業承継の為のナレッジ管理のご相談</text>
+    <text x="1340" y="2025" class="tiny-text">[次へ]ボタンクリックで詳細フォームへ</text>
+
+    <!-- Firestore mail送信 -->
+    <rect x="1550" y="1920" width="280" height="100" rx="10" class="email"></rect>
+    <text x="1690" y="1945" class="small-text" font-weight="bold">Firestore mail送信</text>
+    <text x="1690" y="1965" class="tiny-text">mailコレクション経由</text>
+    <text x="1690" y="1980" class="tiny-text">送信先: a.hikita@cosimo.jp</text>
+    <text x="1690" y="1995" class="tiny-text">CC: ユーザーメール</text>
+    <text x="1690" y="2010" class="tiny-text">10文字以上の実質入力必須</text>
+
+    <!-- 矢印 -->
+    <line x1="1500" y1="340" x2="1500" y2="480" class="arrow"></line>
+    <line x1="1500" y1="540" x2="1500" y2="570" class="arrow"></line>
+    <line x1="1500" y1="650" x2="1500" y2="700" class="arrow"></line>
+    <line x1="1450" y1="770" x2="1275" y2="850" class="arrow"></line>
+    <line x1="1550" y1="770" x2="1725" y2="850" class="arrow"></line>
+    <line x1="1275" y1="930" x2="1275" y2="1080" class="arrow"></line>
+    <line x1="1725" y1="930" x2="1725" y2="1080" class="arrow"></line>
+    <line x1="1250" y1="1140" x2="1175" y2="1200" class="arrow"></line>
+    <line x1="1300" y1="1140" x2="1400" y2="1200" class="arrow"></line>
+    <line x1="1700" y1="1140" x2="1625" y2="1200" class="arrow"></line>
+    <line x1="1750" y1="1140" x2="1840" y2="1200" class="arrow"></line>
+    <line x1="1175" y1="1260" x2="1175" y2="1520" class="arrow"></line>
+    <line x1="1625" y1="1260" x2="1625" y2="1520" class="arrow"></line>
+    <line x1="1480" y1="1580" x2="1500" y2="1650" class="arrow"></line>
+    <line x1="1520" y1="1580" x2="1600" y2="1580" class="arrow"></line>
+    <line x1="1500" y1="1710" x2="1500" y2="1740" class="arrow"></line>
+    <line x1="1500" y1="1800" x2="1500" y2="1820" class="arrow"></line>
+  </g>
+
+  <!-- Phase 5: 決済フロー（Stripe統合） -->
+  <g id="payment-flow-detailed">
+    <rect x="2050" y="80" width="900" height="1200" rx="10" fill="#f5f5f5" stroke="#333" stroke-width="2"></rect>
+    <text x="2500" y="110" class="section-title">Phase 5: 決済フロー（Stripe統合）</text>
+
+    <!-- プラン選択画面 -->
+    <rect x="2150" y="160" width="700" height="160" rx="10" class="plan"></rect>
+    <text x="2500" y="190" class="text" font-weight="bold">プラン選択</text>
+    <text x="2500" y="215" class="small-text">あなたのビジネスに最適なプランを選択してください</text>
+    
+    <!-- 無料トライアル -->
+    <rect x="2200" y="240" width="280" height="60" rx="5" fill="#fff"></rect>
+    <text x="2340" y="260" class="text">無料トライアル</text>
+    <text x="2340" y="280" class="small-text">月間3回まで（累計）</text>
+
+    <!-- ノーマルプラン -->
+    <rect x="2520" y="240" width="280" height="60" rx="5" fill="#e3f2fd"></rect>
+    <text x="2660" y="260" class="text">ノーマルプラン</text>
+    <text x="2660" y="280" class="small-text">¥11,000/月（税込）</text>
+    <text x="2660" y="295" class="tiny-text">月間15回まで</text>
+
+    <!-- createCheckoutSession -->
+    <rect x="2300" y="350" width="400" height="60" rx="10" class="data"></rect>
+    <text x="2500" y="375" class="text">createCheckoutSession(priceId)</text>
+    <text x="2500" y="395" class="small-text">Firebase Functions呼び出し</text>
+
+    <!-- Stripeページへリダイレクト -->
+    <rect x="2300" y="440" width="400" height="60" rx="10" class="stripe"></rect>
+    <text x="2500" y="465" class="text">Stripeページへリダイレクト</text>
+    <text x="2500" y="485" class="small-text">カード情報入力・決済</text>
+
+    <!-- 決済成功？ -->
+    <polygon points="2500,540 2600,590 2500,640 2400,590" class="decision"></polygon>
+    <text x="2500" y="585" class="text" font-weight="bold">決済</text>
+    <text x="2500" y="600" class="text" font-weight="bold">成功？</text>
+
+    <!-- 決済成功 -->
+    <rect x="2200" y="690" width="250" height="120" rx="10" class="email"></rect>
+    <text x="2325" y="715" class="text" font-weight="bold">決済成功</text>
+    <text x="2325" y="735" class="small-text">Stripe Webhook受信</text>
+    <text x="2325" y="750" class="tiny-text">checkout.session.completed</text>
+    <text x="2325" y="765" class="tiny-text">subscription作成</text>
+    <text x="2325" y="780" class="tiny-text">月間利用回数リセット</text>
+    <text x="2325" y="795" class="tiny-text">プラン更新：free→normal</text>
+
+    <!-- 決済失敗 -->
+    <rect x="2550" y="690" width="250" height="120" rx="10" class="error"></rect>
+    <text x="2675" y="715" class="text" font-weight="bold">決済失敗</text>
+    <text x="2675" y="735" class="small-text">エラー表示</text>
+    <text x="2675" y="755" class="small-text">プラン選択画面へ戻る</text>
+    <text x="2675" y="775" class="tiny-text">カスタマーサポート案内</text>
+
+    <!-- 月次更新処理 -->
+    <rect x="2200" y="850" width="250" height="100" rx="10" class="webhook"></rect>
+    <text x="2325" y="875" class="text" font-weight="bold">月次更新処理</text>
+    <text x="2325" y="895" class="small-text">invoice.payment_succeeded</text>
+    <text x="2325" y="910" class="tiny-text">自動更新完了</text>
+    <text x="2325" y="925" class="tiny-text">月間利用回数リセット</text>
+    <text x="2325" y="940" class="tiny-text">通知メール送信</text>
+
+    <!-- サブスクリプション管理 -->
+    <rect x="2550" y="850" width="250" height="100" rx="10" class="process"></rect>
+    <text x="2675" y="875" class="text" font-weight="bold">サブスクリプション管理</text>
+    <text x="2675" y="895" class="small-text">Customer Portal</text>
+    <text x="2675" y="910" class="tiny-text">決済方法変更</text>
+    <text x="2675" y="925" class="tiny-text">請求書ダウンロード</text>
+    <text x="2675" y="940" class="tiny-text">プランキャンセル</text>
+
+    <!-- 矢印 -->
+    <line x1="2500" y1="320" x2="2500" y2="350" class="arrow"></line>
+    <line x1="2500" y1="410" x2="2500" y2="440" class="arrow"></line>
+    <line x1="2500" y1="500" x2="2500" y2="540" class="arrow"></line>
+    <line x1="2450" y1="615" x2="2325" y2="690" class="arrow"></line>
+    <line x1="2550" y1="615" x2="2675" y2="690" class="arrow"></line>
+    <line x1="2325" y1="810" x2="2325" y2="850" class="arrow"></line>
+  </g>
+
+  <!-- システムアーキテクチャ（詳細版） -->
+  <g id="architecture-detailed">
+    <rect x="50" y="2350" width="2900" height="1200" rx="10" fill="#f5f5f5" stroke="#333" stroke-width="2"></rect>
+    <text x="1500" y="2390" class="section-title">システムアーキテクチャ</text>
+
+    <!-- フロントエンド層 -->
+    <rect x="150" y="2430" width="2700" height="200" rx="10" class="frontend"></rect>
+    <text x="1500" y="2460" class="section-title">フロントエンド (React)</text>
+    
+    <rect x="200" y="2490" width="400" height="100" rx="5" class="inner-box" stroke="#1976d2"></rect>
+    <text x="400" y="2515" class="text">Pages</text>
+    <text x="400" y="2535" class="small-text">- Dashboard</text>
+    <text x="400" y="2550" class="small-text">- Plans / Login/Register</text>
+    <text x="400" y="2565" class="small-text">- Terms / Privacy / Tokushoho</text>
+    <text x="400" y="2580" class="small-text">- Admin / CMS</text>
+
+    <rect x="650" y="2490" width="400" height="100" rx="5" class="inner-box" stroke="#1976d2"></rect>
+    <text x="850" y="2515" class="text">Features</text>
+    <text x="850" y="2535" class="small-text">- Reports / Auth</text>
+    <text x="850" y="2550" class="small-text">- Subscription Management</text>
+    <text x="850" y="2565" class="small-text">- User Profile</text>
+    <text x="850" y="2580" class="small-text">- Consulting Form</text>
+
+    <rect x="1100" y="2490" width="400" height="100" rx="5" class="inner-box" stroke="#1976d2"></rect>
+    <text x="1300" y="2515" class="text">Services</text>
+    <text x="1300" y="2535" class="small-text">- API連携 (Firebase/Stripe/AI)</text>
+    <text x="1300" y="2550" class="small-text">- 状態管理 (React Context)</text>
+    <text x="1300" y="2565" class="small-text">- ルーティング (React Router)</text>
+    <text x="1300" y="2580" class="small-text">- フォームバリデーション</text>
+
+    <rect x="1550" y="2490" width="400" height="100" rx="5" class="inner-box" stroke="#1976d2"></rect>
+    <text x="1750" y="2515" class="text">UI Components</text>
+    <text x="1750" y="2535" class="small-text">- Material-UI / Tailwind CSS</text>
+    <text x="1750" y="2550" class="small-text">- Custom Components</text>
+    <text x="1750" y="2565" class="small-text">- Responsive Design</text>
+    <text x="1750" y="2580" class="small-text">- Dark Mode Support</text>
+
+    <rect x="2000" y="2490" width="400" height="100" rx="5" class="inner-box" stroke="#1976d2"></rect>
+    <text x="2200" y="2515" class="text">State Management</text>
+    <text x="2200" y="2535" class="small-text">- User Authentication State</text>
+    <text x="2200" y="2550" class="small-text">- Subscription State</text>
+    <text x="2200" y="2565" class="small-text">- Usage Counter State</text>
+    <text x="2200" y="2580" class="small-text">- Report Generation State</text>
+
+    <rect x="2450" y="2490" width="350" height="100" rx="5" class="inner-box" stroke="#1976d2"></rect>
+    <text x="2625" y="2515" class="text">Utils &amp; Helpers</text>
+    <text x="2625" y="2535" class="small-text">- Date Formatting</text>
+    <text x="2625" y="2550" class="small-text">- Validation Rules</text>
+    <text x="2625" y="2565" class="small-text">- API Error Handling</text>
+    <text x="2625" y="2580" class="small-text">- Local Storage Mgmt</text>
+
+    <!-- バックエンド層 -->
+    <rect x="150" y="2670" width="2700" height="200" rx="10" class="backend"></rect>
+    <text x="1500" y="2700" class="section-title">バックエンド (Firebase Functions)</text>
+
+    <rect x="200" y="2730" width="500" height="100" rx="5" class="inner-box" stroke="#4caf50"></rect>
+    <text x="450" y="2755" class="text">stripeWebhook</text>
+    <text x="450" y="2775" class="small-text">決済イベント処理 (asia-northeast1)</text>
+    <text x="450" y="2790" class="tiny-text">- checkout.session.completed</text>
+    <text x="450" y="2805" class="tiny-text">- invoice.payment_succeeded</text>
+    <text x="450" y="2820" class="tiny-text">- customer.subscription.deleted</text>
+
+    <rect x="750" y="2730" width="500" height="100" rx="5" class="inner-box" stroke="#4caf50"></rect>
+    <text x="1000" y="2755" class="text">月次リセット処理</text>
+    <text x="1000" y="2775" class="small-text">isNewMonth() チェック</text>
+    <text x="1000" y="2790" class="tiny-text">- monthlyUsageCount リセット</text>
+    <text x="1000" y="2805" class="tiny-text">- lastResetDate 更新</text>
+    <text x="1000" y="2820" class="tiny-text">- 通知メール送信トリガー</text>
+
+    <rect x="1300" y="2730" width="500" height="100" rx="5" class="inner-box" stroke="#4caf50"></rect>
+    <text x="1550" y="2755" class="text">sendConsultingInquiry</text>
+    <text x="1550" y="2775" class="small-text">問い合わせメール送信</text>
+    <text x="1550" y="2790" class="tiny-text">- Firestore mail コレクション作成</text>
+    <text x="1550" y="2805" class="tiny-text">- 宛先: a.hikita@cosimo.jp</text>
+    <text x="1550" y="2820" class="tiny-text">- CC: ユーザーメール</text>
+
+    <rect x="1850" y="2730" width="500" height="100" rx="5" class="inner-box" stroke="#4caf50"></rect>
+    <text x="2100" y="2755" class="text">createCheckoutSession</text>
+    <text x="2100" y="2775" class="small-text">Stripe決済セッション作成</text>
+    <text x="2100" y="2790" class="tiny-text">- Price ID: price_xxx</text>
+    <text x="2100" y="2805" class="tiny-text">- Success URL設定</text>
+    <text x="2100" y="2820" class="tiny-text">- Cancel URL設定</text>
+
+    <rect x="2400" y="2730" width="400" height="100" rx="5" class="inner-box" stroke="#4caf50"></rect>
+    <text x="2600" y="2755" class="text">generateReport</text>
+    <text x="2600" y="2775" class="small-text">AI レポート生成（予定）</text>
+    <text x="2600" y="2790" class="tiny-text">- OpenAI API 呼び出し</text>
+    <text x="2600" y="2805" class="tiny-text">- レポート保存</text>
+    <text x="2600" y="2820" class="tiny-text">- 利用回数更新</text>
+
+    <!-- Firebase Extensions -->
+    <rect x="200" y="2880" width="2600" height="40" rx="5" fill="#e0f7fa" stroke="#00897b" stroke-width="2"></rect>
+    <text x="1500" y="2905" class="text">Firebase Extensions: Trigger Email from Firestore (Gmail SMTP)</text>
+
+    <!-- 外部システム連携 -->
+    <text x="1500" y="2970" class="section-title">外部システム連携</text>
+
+    <!-- Firebase -->
+    <rect x="150" y="3000" width="600" height="200" rx="10" class="firebase"></rect>
+    <text x="450" y="3030" class="section-title" fill="#ff6f00">Firebase (外部)</text>
+    
+    <rect x="200" y="3060" width="250" height="40" rx="5" fill="#fff8e1" stroke="#ff8f00"></rect>
+    <text x="325" y="3085" class="small-text">Authentication</text>
+    <rect x="470" y="3060" width="250" height="40" rx="5" fill="#fff8e1" stroke="#ff8f00"></rect>
+    <text x="595" y="3085" class="small-text">Hosting</text>
+    
+    <rect x="200" y="3110" width="520" height="80" rx="5" fill="#fff8e1" stroke="#ff8f00"></rect>
+    <text x="460" y="3130" class="small-text">Firestore Database</text>
+    <text x="460" y="3150" class="tiny-text">- users: ユーザー情報、プラン、利用回数</text>
+    <text x="460" y="3165" class="tiny-text">- reports: レポート履歴</text>
+    <text x="460" y="3180" class="tiny-text">- mail: メール送信キュー</text>
+
+    <!-- Stripe -->
+    <rect x="800" y="3000" width="600" height="200" rx="10" class="stripe"></rect>
+    <text x="1100" y="3030" class="section-title" fill="#635bff">Stripe (外部)</text>
+    
+    <rect x="850" y="3060" width="250" height="40" rx="5" fill="#f5f5ff" stroke="#7c4dff"></rect>
+    <text x="975" y="3085" class="small-text">Checkout Session</text>
+    <rect x="1120" y="3060" width="250" height="40" rx="5" fill="#f5f5ff" stroke="#7c4dff"></rect>
+    <text x="1245" y="3085" class="small-text">Customer Portal</text>
+    
+    <rect x="850" y="3110" width="520" height="80" rx="5" fill="#f5f5ff" stroke="#7c4dff"></rect>
+    <text x="1110" y="3130" class="small-text">Webhook Events</text>
+    <text x="1110" y="3150" class="tiny-text">- checkout.session.completed</text>
+    <text x="1110" y="3165" class="tiny-text">- invoice.payment_succeeded</text>
+    <text x="1110" y="3180" class="tiny-text">- customer.subscription.deleted</text>
+
+    <!-- AI API -->
+    <rect x="1450" y="3000" width="600" height="200" rx="10" class="api"></rect>
+    <text x="1750" y="3030" class="section-title" fill="#00897b">AI API (外部)</text>
+    
+    <rect x="1500" y="3060" width="250" height="40" rx="5" fill="#e0f2f1" stroke="#00a693"></rect>
+    <text x="1625" y="3085" class="small-text">OpenAI API</text>
+    <rect x="1770" y="3060" width="250" height="40" rx="5" fill="#e0f2f1" stroke="#00a693"></rect>
+    <text x="1895" y="3085" class="small-text">Claude API (予定)</text>
+    
+    <rect x="1500" y="3110" width="520" height="80" rx="5" fill="#e0f2f1" stroke="#00a693"></rect>
+    <text x="1760" y="3130" class="small-text">レポート生成処理</text>
+    <text x="1760" y="3150" class="tiny-text">- プロンプトエンジニアリング</text>
+    <text x="1760" y="3165" class="tiny-text">- 企業情報分析</text>
+    <text x="1760" y="3180" class="tiny-text">- レポートフォーマッティング</text>
+
+    <!-- Gmail SMTP -->
+    <rect x="2100" y="3000" width="600" height="200" rx="10" class="email"></rect>
+    <text x="2400" y="3030" class="section-title" fill="#e91e63">Gmail SMTP (外部)</text>
+    
+    <rect x="2150" y="3060" width="520" height="130" rx="5" fill="#ffebee" stroke="#f06292"></rect>
+    <text x="2410" y="3085" class="small-text">メール送信サービス</text>
+    <text x="2410" y="3105" class="tiny-text">Google Workspace経由</text>
+    <text x="2410" y="3125" class="tiny-text">- 認証メール（新規登録/メール再認証）</text>
+    <text x="2410" y="3140" class="tiny-text">- パスワードリセットメール</text>
+    <text x="2410" y="3155" class="tiny-text">- 月次リセット通知メール</text>
+    <text x="2410" y="3170" class="tiny-text">- コンサルティング問い合わせ受信</text>
+    <text x="2410" y="3185" class="tiny-text" fill="#00897b">※Trigger Email Extension経由で送信</text>
+
+    <!-- セキュリティ設計 -->
+    <rect x="150" y="3230" width="2700" height="100" rx="10" fill="#ffebee" stroke="#d32f2f" stroke-width="2"></rect>
+    <text x="1500" y="3260" class="section-title" fill="#d32f2f">セキュリティ設計</text>
+    <text x="400" y="3285" class="small-text">• Firebase Authentication による認証</text>
+    <text x="800" y="3285" class="small-text">• Firestore セキュリティルールによるアクセス制御</text>
+    <text x="1300" y="3285" class="small-text">• APIキーの環境変数管理</text>
+    <text x="1700" y="3285" class="small-text">• Stripe Webhook署名検証</text>
+    <text x="2100" y="3285" class="small-text">• HTTPS通信の強制</text>
+    <text x="400" y="3305" class="small-text">• パスワード強度チェック</text>
+    <text x="800" y="3305" class="small-text">• レート制限の実装</text>
+    <text x="1300" y="3305" class="small-text">• XSS/CSRF対策</text>
+    <text x="1700" y="3305" class="small-text">• 機密データの暗号化</text>
+    <text x="2100" y="3305" class="small-text">• 定期的なセキュリティ監査</text>
+
+    <!-- データフロー矢印 -->
+    <line x1="1500" y1="2630" x2="1500" y2="2670" class="arrow"></line>
+    <line x1="450" y1="2870" x2="450" y2="3000" class="arrow"></line>
+    <line x1="1100" y1="2870" x2="1100" y2="3000" class="arrow"></line>
+    <line x1="1750" y1="2870" x2="1750" y2="3000" class="arrow"></line>
+    <line x1="2400" y1="2870" x2="2400" y2="3000" class="arrow"></line>
+  </g>
+
+  <!-- Phase実装状況 -->
+  <g id="implementation-status">
+    <rect x="50" y="3600" width="2900" height="400" rx="10" fill="#e8f5e9" stroke="#4caf50" stroke-width="2"></rect>
+    <text x="1500" y="3640" class="section-title">Phase 実装状況</text>
+    
+    <text x="200" y="3700" class="text" style="text-anchor: start;">Phase 1: ディレクトリ構造整備 ✓</text>
+    <text x="200" y="3730" class="text" style="text-anchor: start;">Phase 2: 認証機能実装 ✓</text>
+    <text x="200" y="3760" class="text" style="text-anchor: start;">Phase 3: メール認証フロー＋拡張機能 ✓</text>
+    <text x="250" y="3785" class="small-text" style="text-anchor: start;">- メール認証、パスワード強度表示、法的ページ、コンサルティングプラン</text>
+    <text x="250" y="3805" class="small-text" fill="#00897b" style="text-anchor: start;">- Firebase Extensions (Trigger Email) 実装完了</text>
+    
+    <text x="200" y="3835" class="text" style="text-anchor: start;">Phase 4: レポート生成機能（AI API統合）△</text>
+    <text x="250" y="3860" class="small-text" style="text-anchor: start;">- 現在3秒待機のダミー実装</text>
+    
+    <text x="200" y="3890" class="text" style="text-anchor: start;">Phase 5: 決済機能（Stripe統合）✓</text>
+    <text x="250" y="3915" class="small-text" style="text-anchor: start;">- Webhook処理、月次リセット機能実装完了</text>
+    
+    <text x="1200" y="3700" class="text" style="text-anchor: start;">Cloud Functions 実装状況</text>
+    <text x="1250" y="3730" class="small-text" style="text-anchor: start;">実装済み Functions:</text>
+    <text x="1300" y="3755" class="small-text" style="text-anchor: start;">• stripeWebhook - 決済イベント処理（asia-northeast1）</text>
+    <text x="1300" y="3775" class="small-text" style="text-anchor: start;">• sendConsultingInquiry - コンサルティング問い合わせメール送信（asia-northeast1）</text>
+    <text x="1300" y="3795" class="small-text" style="text-anchor: start;">• 月次リセット処理 - isNewMonth() チェック機能</text>
+    
+    <text x="1250" y="3825" class="small-text" fill="#00897b" style="text-anchor: start;">Firebase Extensions:</text>
+    <text x="1300" y="3850" class="small-text" fill="#00897b" style="text-anchor: start;">• Trigger Email from Firestore - Gmail SMTP経由でメール送信</text>
+    <text x="1300" y="3870" class="small-text" style="text-anchor: start;">- mailコレクション監視による自動送信</text>
+    
+    <text x="1250" y="3900" class="small-text" style="text-anchor: start;">実装予定 Functions:</text>
+    <text x="1300" y="3925" class="small-text" style="text-anchor: start;">• generateReport - AI APIを使用したレポート生成</text>
+    <text x="1300" y="3945" class="small-text" style="text-anchor: start;">• updateUserProfile - ユーザープロフィール更新</text>
+  </g>
+
+  <!-- フロー間の接続線（詳細） -->
+  <!-- 認証完了からダッシュボードへ -->
+  <path d="M 500 1770 L 500 1850 L 1050 1850 L 1050 250 L 1150 250" class="flow-connector"></path>
+  <text x="800" y="1840" class="small-text" fill="#FF6B6B">認証完了後ダッシュボードへ</text>
+
+  <!-- アップグレードボタンから決済フローへ -->
+  <path d="M 1290 320 L 1290 380 L 2000 380 L 2000 200 L 2150 200" class="flow-connector"></path>
+  <text x="1650" y="370" class="small-text" fill="#FF6B6B">プランアップグレード</text>
+
+  <!-- 決済成功からダッシュボード更新へ -->
+  <path d="M 2325 810 L 2325 880 L 1900 880 L 1900 400 L 1850 400" class="flow-connector"></path>
+  <text x="2100" y="870" class="small-text" fill="#FF6B6B">決済完了・プラン更新</text>
+
+  <!-- 入力欄無効からアップグレードへ -->
+  <path d="M 1400 1300 L 1600 1300 L 1600 600 L 2100 600 L 2100 300 L 2150 300" class="flow-connector"></path>
+
+  <!-- コンサルティングボタンからモーダルへ -->
+  <line x1="1510" y1="320" x2="1340" y2="1920" stroke="#4CAF50" stroke-width="2" stroke-dasharray="5,5"></line>
+
+  <!-- コンサルティングからメール送信へ -->
+  <line x1="1480" y1="1990" x2="1550" y2="1970" class="arrow"></line>
+
+  <!-- 月次リセット処理の接続 -->
+  <line x1="1740" y1="1110" x2="1740" y2="1150" class="arrow"></line>
+  <line x1="1740" y1="1150" x2="1350" y2="1150" stroke="#ffc107" stroke-width="2" stroke-dasharray="5,5"></line>
+  <line x1="1350" y1="1150" x2="1350" y2="1100" stroke="#ffc107" stroke-width="2" stroke-dasharray="5,5" marker-end="url(#arrowhead)"></line>
+
+  <!-- システムアーキテクチャとの接続 -->
+  <line x1="500" y1="1780" x2="500" y2="2350" stroke="#666" stroke-width="3" stroke-dasharray="10,5"></line>
+  <line x1="1500" y1="2280" x2="1500" y2="2350" stroke="#666" stroke-width="3" stroke-dasharray="10,5"></line>
+  <line x1="2500" y1="1280" x2="2500" y2="2350" stroke="#666" stroke-width="3" stroke-dasharray="10,5"></line>
+  <text x="1500" y="2340" class="small-text" fill="#666">システム実装層</text>
+
+  <!-- 凡例 -->
+  <g id="legend">
+    <rect x="50" y="4050" width="2900" height="150" rx="10" fill="#f5f5f5" stroke="#333" stroke-width="1"></rect>
+    <text x="1500" y="4080" class="section-title">凡例</text>
+    
+    <rect x="100" y="4100" width="30" height="20" class="box"></rect>
+    <text x="140" y="4115" class="small-text" style="text-anchor: start;">画面/状態</text>
+    
+    <rect x="300" y="4100" width="30" height="20" class="decision"></rect>
+    <text x="340" y="4115" class="small-text" style="text-anchor: start;">分岐判定</text>
+    
+    <rect x="500" y="4100" width="30" height="20" class="process"></rect>
+    <text x="540" y="4115" class="small-text" style="text-anchor: start;">ユーザー入力</text>
+    
+    <rect x="700" y="4100" width="30" height="20" class="data"></rect>
+    <text x="740" y="4115" class="small-text" style="text-anchor: start;">システム処理</text>
+    
+    <rect x="900" y="4100" width="30" height="20" class="error"></rect>
+    <text x="940" y="4115" class="small-text" style="text-anchor: start;">エラー処理</text>
+    
+    <rect x="1100" y="4100" width="30" height="20" class="email"></rect>
+    <text x="1140" y="4115" class="small-text" style="text-anchor: start;">メール関連</text>
+    
+    <rect x="1300" y="4100" width="30" height="20" class="report"></rect>
+    <text x="1340" y="4115" class="small-text" style="text-anchor: start;">レポート生成</text>
+    
+    <rect x="1500" y="4100" width="30" height="20" class="plan"></rect>
+    <text x="1540" y="4115" class="small-text" style="text-anchor: start;">プラン管理</text>
+    
+    <rect x="1700" y="4100" width="30" height="20" class="webhook"></rect>
+    <text x="1740" y="4115" class="small-text" style="text-anchor: start;">Webhook処理</text>
+    
+    <rect x="1900" y="4100" width="30" height="20" class="api"></rect>
+    <text x="1940" y="4115" class="small-text" style="text-anchor: start;">API処理</text>
+    
+    <line x1="100" y1="4150" x2="150" y2="4150" class="arrow"></line>
+    <text x="160" y="4155" class="small-text" style="text-anchor: start;">通常フロー</text>
+    
+    <line x1="300" y1="4150" x2="350" y2="4150" class="flow-connector"></line>
+    <text x="360" y="4155" class="small-text" style="text-anchor: start;">フロー間接続</text>
+    
+    <line x1="500" y1="4150" x2="550" y2="4150" class="dashed-arrow"></line>
+    <text x="560" y="4155" class="small-text" style="text-anchor: start;">オプショナル/戻り</text>
+    
+    <line x1="700" y1="4150" x2="750" y2="4150" class="email-arrow"></line>
+    <text x="760" y="4155" class="small-text" style="text-anchor: start;">外部メール送信</text>
+  </g>
+
+</svg>
